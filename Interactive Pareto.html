@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      <meta charset="utf-8" />
+      <title>Interactive Pareto</title>
+      
+      <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+      <script src="http://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+      <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+      <style>
+        @import 'https://code.highcharts.com/css/highcharts.css';
+        text {
+          font-family: 'Quicksand';
+        }
+        .highcharts-axis-labels {
+          font-family: 'Quicksand';
+          color: orange;
+        }
+        .highcharts-axis-titles {
+          font-family: 'Quicksand';
+          font-size: 16pt;
+        }
+
+        .highcharts-subtitle {
+          font-family: 'Quicksand';
+          fill: #7cb5ec;
+        }
+        #container {
+            min-width: 300px;
+            max-width: 1000px;
+            min-height: 730px;
+            margin: 0 auto;
+        }
+      </style>
+    </head>
+    <body>
+      <div id="container" style="height: 400px;"></div>
+
+
+      <script>
+        
+        $(function () {
+              Highcharts.chart('container', {
+                   credits: {
+                      text: 'Source: American Community Survey PUMS 2015 Data',
+                       href: 'http://www.census.gov/programs-surveys/acs/data/pums.html'
+                  },
+                  chart: {
+                      zoomType: 'xy',
+                      alignTicks: true
+                  },
+                  title: {
+                      text: 'Most Women Work Only a Few Types of Jobs',
+                      align: 'Left',
+                      style: {
+                        "fontSize": "24px",
+                        "font-weight": "bold",
+                        "fontStyle": "bold"
+
+                      }
+                  },
+
+                  subtitle: {
+                      text: 'More than half fall into just four categories',
+                      align: 'Left',
+                      style: {
+                        "fontSize": "16px",
+                        "font-weight": "light"
+                      }
+                  },
+                  
+                  xAxis: [{
+                      categories: ['Office and Administrative Support Occupations', 'Sales Occupations', 'Education, Training, and Library Occupations', 'Healthcare Practitioners and Technical Occupations', 'Management Occupations', 'Food Preparation and Serving Occupations', 'Personal Care and Service Occupations', 'Healthcare Support Occupations', 'Community and Social Services Occupations', 'Production Occupations', 'Business Operations Specialists', 'Building and Grounds Cleaning and Maintenance Occupations', 'Financial Specialists', 'Transportation and Material Moving Occupations', 'Arts, Design, Entertainment, Sports, and Media Occupations', 'Computer and Mathematical Occupations', 'Protective Service Occupations', 'Life, Physical, and Social Science Occupations', 'Architecture and Engineering Occupations', 'Farming, Fishing, and Forestry Occupations', 'Construction Trades', 'Installation, Maintenance, and Repair Workers', 'Military Specific Occupations', 'Extraction Workers'],
+                      crosshair: true
+                  }],
+                  credits: {
+                      text: 'Source: American Community Survey PUMS 2015 Data',
+                      href: 'http://www.census.gov/programs-surveys/acs/data/pums.html',
+                      style: {
+                        "font-family": 'Quicksand',
+                        "fontSize": "10px",
+                        "font-weight": "light"
+                      }
+                  },
+                  yAxis: [{ // Primary yAxis
+                      title: {
+                          text: 'Cumulative Percentage',
+                          style: {
+                              color: '#929292'
+                          }
+                      },
+                      labels: {
+                          format: '{value}%',
+                          style: {
+                              color: '#929292'
+                          }
+                      
+                      },
+                      tickPositions: [0, 25, 50, 75, 100]
+                  }, { // Secondary yAxis
+                      labels: {
+                          format: '',
+                          style: {
+                              color: "#48A842"
+                          }
+                      },
+                      title: {
+                          text: 'Women Working',
+                          style: {
+                              color: "#48A842"
+                          }
+                      },
+                      opposite: true,
+                      tickPositions: [0, 50000, 100000, 150000, 200000]
+                  }],
+                  tooltip: {
+                      shared: true
+                  },
+                  
+                  series: [{
+                      name: 'Women Working',
+                      type: 'column',
+                      color: "#48A842",
+                      yAxis: 1,
+                      data: [151067, 79870, 74903, 67980, 62598, 49487, 37490, 28814, 26163, 25575, 21571, 19669, 19341, 16394, 13310, 11348, 7973, 6496, 4327, 3200, 2020, 1731, 783, 68],
+                      tooltip: {
+                          valueSuffix: ' '
+                      }
+
+                  }, {
+                      name: 'Cumulative Percentage',
+                      type: 'spline',
+                      color: '#929292',
+                      data: [20.63, 31.54, 41.78, 51.056, 59.61, 66.36, 71.48, 75.42, 78.99, 82.49, 85.43, 88.12, 90.76, 93.00, 94.82, 96.37, 97.46, 98.34, 98.934, 99.37, 99.65, 99.88, 99.99, 100],
+                      tooltip: {
+                          valueSuffix: '%'
+                      }
+                  }]
+              });
+          });
+      </script>
+    </body>
+</html>
