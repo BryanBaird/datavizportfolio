@@ -1,0 +1,17 @@
+library(dplyr)
+library(ggplot2)
+
+df <- read.csv("C:/Users/Bryan Baird/Desktop/Data_Feed.csv")
+
+districts <- df %>%
+  group_by(placeofperformancecongressionaldistrict) %>%
+  summarize(average.obligation = mean(dollarsobligated),
+            total.obligation = sum(dollarsobligated),
+            number.obligcations = n()) %>%
+  arrange(desc(total.obligation))
+  
+g <- ggplot(data = districts, aes(x = (total.obligation)))
+g + geom_density() +
+  labs(x = "Total 2000 Dollar Value Obligations in District (Log Scaled)", y = "Relative frequency of districts with that amount") +
+  scale_x_log10() +
+  ggtitle("Relative District-wide DoD Obligations for Congressional Districts")
